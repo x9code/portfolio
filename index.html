@@ -15,7 +15,7 @@
             --primary: #667eea;
             --secondary: #764ba2;
             --accent: #00d9ff;
-            --dark: #1a1a2e;
+            --dark: #0a0e27;
             --light: #f8f9fa;
         }
 
@@ -34,15 +34,15 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(135deg, #0a0e27 0%, #16213e 100%);
         }
 
         .bg-animation::before {
             content: '';
             position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.15) 0%, transparent 70%);
             border-radius: 50%;
             top: -100px;
             right: -100px;
@@ -52,13 +52,44 @@
         .bg-animation::after {
             content: '';
             position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(0, 217, 255, 0.08) 0%, transparent 70%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.12) 0%, transparent 70%);
             border-radius: 50%;
             bottom: -150px;
             left: -100px;
             animation: float 15s infinite ease-in-out reverse;
+        }
+
+        /* Grid pattern overlay */
+        .grid-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                linear-gradient(rgba(102, 126, 234, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(102, 126, 234, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Particles */
+        .particle {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: rgba(0, 217, 255, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
         }
 
         @keyframes float {
@@ -84,25 +115,92 @@
 
         .glitch {
             font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 800;
+            font-weight: 900;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+            background: linear-gradient(135deg, #667eea 0%, #00d9ff 50%, #667eea 100%);
+            background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: glow 2s ease-in-out infinite alternate;
+            animation: gradientShift 3s ease infinite;
+            position: relative;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-family: 'Space Grotesk', 'Orbitron', 'Rajdhani', sans-serif;
+            filter: drop-shadow(0 0 20px rgba(0, 217, 255, 0.2));
         }
 
-        @keyframes glow {
-            from { filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.5)); }
-            to { filter: drop-shadow(0 0 40px rgba(0, 217, 255, 0.8)); }
+        .glitch::before {
+            content: 'DEEPAK KUMAR RANA';
+            position: absolute;
+            top: 0;
+            left: 2px;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #00d9ff 50%, #667eea 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0.5;
+            z-index: -1;
+            animation: glitch1 2.5s infinite;
+        }
+
+        .glitch::after {
+            content: 'DEEPAK KUMAR RANA';
+            position: absolute;
+            top: 0;
+            left: -2px;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 50%, #00d9ff 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0.5;
+            z-index: -1;
+            animation: glitch2 3s infinite;
+        }
+
+        @keyframes glitch1 {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+
+        @keyframes glitch2 {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(2px, -2px); }
+            40% { transform: translate(2px, 2px); }
+            60% { transform: translate(-2px, -2px); }
+            80% { transform: translate(-2px, 2px); }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .subtitle {
-            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-size: clamp(1.1rem, 2.5vw, 1.6rem);
             color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .hero-description {
+            font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+            color: rgba(255,255,255,0.8);
             margin-bottom: 2rem;
-            font-weight: 300;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
         }
 
         .typing-effect {
@@ -461,14 +559,16 @@
 </head>
 <body>
     <div class="bg-animation"></div>
+    <div class="grid-pattern"></div>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <h1 class="glitch">DEEPAK KUMAR RANA</h1>
             <p class="subtitle">Breaking Software, <span class="typing-effect">Building Quality</span></p>
-            <p style="font-size: 1.2rem; color: rgba(255,255,255,0.7); margin-bottom: 2rem;">
-                QA Engineer crafting bulletproof test automation frameworks
+            <p class="hero-description">
+                MCA Graduate • QA Engineer specializing in bulletproof test automation frameworks 
+                <br>Turning complex testing challenges into elegant automated solutions
             </p>
             <div class="cta-buttons">
                 <a href="#projects" class="btn">View My Work</a>
@@ -625,6 +725,49 @@
                 }
             });
         });
+
+        // Create floating particles
+        function createParticles() {
+            const particleCount = 30;
+            const container = document.body;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                particle.style.opacity = Math.random() * 0.5 + 0.2;
+                
+                const size = Math.random() * 3 + 1;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                container.appendChild(particle);
+                
+                // Animate particle
+                const animate = () => {
+                    const duration = Math.random() * 5000 + 3000;
+                    const startY = parseFloat(particle.style.top);
+                    const endY = Math.random() * 100;
+                    const startX = parseFloat(particle.style.left);
+                    const endX = Math.random() * 100;
+                    
+                    particle.animate([
+                        { top: startY + '%', left: startX + '%' },
+                        { top: endY + '%', left: endX + '%' }
+                    ], {
+                        duration: duration,
+                        easing: 'ease-in-out'
+                    }).onfinish = animate;
+                };
+                
+                animate();
+            }
+        }
+        
+        createParticles();
 
         // Typing effect
         const phrases = ["Building Quality", "Automating Everything", "Finding Bugs", "Writing Tests"];
